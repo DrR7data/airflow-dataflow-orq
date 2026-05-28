@@ -17,4 +17,4 @@ I created a directorie at airflow for the data for flowwork
     4 drwxrwxrwx+ 2 codespace root 4096 May 24 22:57 sql
  ```
  
- ![Schema_silver.png](./airflow-dataflow-orq/airflow/dags/etl_track/docs/schema_silver.png)
+ ![Schema_silver.png](/airflow/dags/etl_track/docs/schema_silver.png)
