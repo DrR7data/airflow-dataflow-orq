@@ -10,22 +10,24 @@ uv:
 	@echo "Activating virtual environment..."
 	source .venv/bin/activate
 mk:
-	mkdir -p ./dags ./logs ./plugins
+	#mkdir -p ./dags ./logs ./plugins
 	echo -e "AIRFLOW_UID=$(id -u)" > .env
 up-db:
 	@echo "Initialize the database..."
-	docker compose up airflow-init
-conn-pg:
-	@echo "Connecting to Postgres..."
-	uvx pgcli -h localhost -p 5434 -U flow -d flow
-conn-air:
-	@echo "Connecting to Postgres..."
-	uvx pgcli -h localhost -p 5432 -U airflow -d airflow
+	docker compose up airflow-init 
 up:
 	docker compose up -d 
 down:
 	docker compose down
 start:
 	docker compose start
+
+conn-pg:
+	@echo "Connecting to Postgres..."
+	uvx pgcli -h localhost -p 5434 -U flow -d flow
+conn-air:
+	@echo "Connecting to Postgres..."
+	uvx pgcli -h localhost -p 5432 -U airflow -d airflow
+
 start_db:
 

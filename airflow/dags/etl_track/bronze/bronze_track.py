@@ -23,7 +23,7 @@ def Bronze_Track():
         query = """
         DROP SCHEMA IF EXISTS bronze_track CASCADE;
 
-        CREATE SCHEMA IF NOT EXISTS bronze_track;
+        CREATE SCHEMA IF NOT EXISTS bronze_track
         ;
         """
         try:
@@ -35,8 +35,20 @@ def Bronze_Track():
             return 0
         except Exception as e:
             return 1 
-        
     
+    track_schema_bronze = SQLExecuteQueryOperator(
+            task_id='track_schema_bronze',
+            conn_id='tutorial_pg_conn',
+            sql="""
+            DROP SCHEMA IF EXISTS bronze_track CASCADE;
+            CREATE SCHEMA IF NOT EXISTS bronze_track
+            ;
+            """,
+            split_statements=True, # Habilita la lectura de múltiples statements
+            autocommit=True,       # Opcional: confirma cada query automáticamente
+
+    )
+        
     create_table_track_raw = SQLExecuteQueryOperator(
         task_id="create_table_track_raw",
         conn_id="tutorial_pg_conn",
@@ -102,7 +114,7 @@ def Bronze_Track():
         except Exception as e:
             return 1
     """
-    create_schema_track_raw()>>[create_table_track_raw,] >> get_data() 
+    create_schema_track_raw()>>track_schema_bronze>>[create_table_track_raw,] >> get_data() 
     #create_schema_track_raw()>>create_schema_track()>>create_table_album>>[create_table_track_raw,create_employees_table, create_employees_temp_table] >> get_data() >> merge_data()
 
 

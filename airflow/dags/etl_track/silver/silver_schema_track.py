@@ -35,6 +35,17 @@ def Silver_Track():
             return 0
         except Exception as e:
             return 1 
+    track_schema_silver = SQLExecuteQueryOperator(
+            task_id='track_schema_silver',
+            conn_id='tutorial_pg_conn',
+            sql="""
+            DROP SCHEMA IF EXISTS silver_track CASCADE;
+            
+            CREATE SCHEMA IF NOT EXISTS silver_track;
+            """,
+            split_statements=True, # Habilita la lectura de múltiples statements
+            autocommit=True,       # Opcional: confirma cada query automáticamente
+    )
         
     
     create_table_silver_album = SQLExecuteQueryOperator(
@@ -93,7 +104,7 @@ def Silver_Track():
     )
     
 
-    create_schema_silver_track() >> [create_table_silver_album, create_table_silver_artist] >> create_table_silver_track >> create_table_silver_track_artist
+    create_schema_silver_track() >> track_schema_silver >> [create_table_silver_album, create_table_silver_artist] >> create_table_silver_track >> create_table_silver_track_artist
 
 
 dag = Silver_Track()

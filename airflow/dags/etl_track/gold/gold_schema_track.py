@@ -46,7 +46,7 @@ def Gold_Track():
         task_id='create_schema_gold_track',
         conn_id='tutorial_pg_conn',
         sql="""
-        DROP SCHEMA gold_track CASCADE;
+        DROP SCHEMA IF EXISTS gold_track CASCADE;
 
         CREATE SCHEMA IF NOT EXISTS gold_track;
         """,
