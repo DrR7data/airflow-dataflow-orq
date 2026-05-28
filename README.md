@@ -18,3 +18,10 @@ I created a directorie at airflow for the data for flowwork
  ```
  
  ![Schema_silver.png](/airflow/dags/etl_track/docs/schema_silver.png)
+### Bronze Airflow
+ ![pipeline_bronze.png](/airflow/dags/etl_track/docs/1_bronze_track_1.png)
+### Silver Airflow
+ ![pipeline_silver_track.png](/airflow/dags/etl_track/docs/2_silver_track_3.png)
+ ![pipeline_silver_track_transfor.png](/airflow/dags/etl_track/docs/2_silver_transform_track_3.png)
+### Silver Airflow
+ ![pipeline_gold_track.png](/airflow/dags/etl_track/docs/3_dolg_track_4.png)
