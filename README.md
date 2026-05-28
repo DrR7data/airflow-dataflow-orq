@@ -23,5 +23,5 @@ I created a directorie at airflow for the data for flowwork
 ### Silver Airflow
  ![pipeline_silver_track.png](/airflow/dags/etl_track/docs/2_silver_track_2.png)
  ![pipeline_silver_track_transfor.png](/airflow/dags/etl_track/docs/2_silver_transform_track_3.png)
-### Silver Airflow
+### Gold Airflow
  ![pipeline_gold_track.png](/airflow/dags/etl_track/docs/3_gold_track_4.png)
